@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse.ant.import?>
+
+<project basedir="." default="jar" name="SynchronouslyServer">
+	<property name="build.dir" location="build" />
+	<property name="build.classes" location="bin" />	
+	<property name="lib.dir" value="${basedir}/lib/" />
+	<property name="jobjar.tmp.dir" value="tmp/" />
+  <fileset id="lib.jars" dir="${basedir}/lib/" includes="*.jar"/>
+
+  <path id="lib.jar.set">
+    <fileset dir="${lib.dir}" />
+  </path>
+
+	<target name="jar" depends="build">
+		<jar destfile="${build.dir}/synchronously-server.jar" basedir="${build.classes}">
+			<manifest>
+				<attribute name="Main-Class" value="DataServer" />
+			</manifest>
+		</jar>
+	</target>
+
+  <target name="jobjar" depends="jar" description="build full jar">
+    <delete file="${build.dir}/SynchronouslyServer.job.jar" />
+    <delete dir="${jobjar.tmp.dir}"/>
+    <mkdir dir="${jobjar.tmp.dir}" />
+    <unjar dest="${jobjar.tmp.dir}" overwrite="false">
+      <fileset refid="lib.jars"/>
+    </unjar>
+    <copy todir="${jobjar.tmp.dir}" >
+      <fileset dir="bin/"/>
+    </copy>
+    <delete dir="${jobjar.tmp.dir}/META-INF" quiet="true" />
+    <jar jarfile="${build.dir}/synchronously-server.job.jar" basedir="${jobjar.tmp.dir}" >
+				<manifest>
+					<attribute name="Main-Class" value="DataServer" />
+				</manifest>
+		</jar>
+    <delete dir="${jobjar.tmp.dir}"/>
+  </target>
+</project>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse.ant.import?>
+
+<project basedir="." default="jar" name="SynchronouslyJavaClient">
+	<property name="build.dir" location="build" />
+	<property name="build.classes" location="bin" />	
+
+	<target name="jar" depends="build">
+		<jar destfile="${build.dir}/synchronously-client.jar" basedir="${build.classes}">
+			<manifest>
+				<attribute name="Main-Class" value="SynchronouslyClient" />
+			</manifest>
+		</jar>
+	</target>
+</project>
