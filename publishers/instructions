@@ -1,0 +1,3 @@
+compile the plugin
+set apparmor to complain mode
+only writing to /var/lib/mysql b/c of permissions
