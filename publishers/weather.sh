@@ -11,7 +11,7 @@ do
   temp=$( { xpath -q -e "//temperature_string/text()" K$1.xml;} )
   obstime=$( { xpath -q -e "//observation_time_rfc822/text()" K$1.xml;} )
 
-  echo $obstime	$temp	$wind >> $1.out
+  echo $obstime"	"$temp"	"$wind >> $1.out
 
   rm K$1.xml
 done

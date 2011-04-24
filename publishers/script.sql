@@ -25,7 +25,7 @@ END$$
 delimiter |
 CREATE TRIGGER push_update AFTER INSERT ON daily_readings
 FOR EACH ROW BEGIN
-call udfwrapper_sp(concat(NEW.time, ' ', NEW.reading));
+call udfwrapper_sp(concat(NEW.time, '\t', NEW.reading));
 END;
 |
 
