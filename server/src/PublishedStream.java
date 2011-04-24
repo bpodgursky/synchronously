@@ -34,12 +34,12 @@ public class PublishedStream{
 			this.openSockets = connections;
 		}
 		
-		public static final PublishedStream publish(String inputPath, int port) throws IOException{
+		public static final PublishedStream publish(File input, int port) throws IOException{
 			final ServerSocket serverSocket = new ServerSocket(port);
 			final List<Socket> openSockets = Collections.synchronizedList(new LinkedList<Socket>());
 			
     	Thread connectionListener = openConnectionListener(serverSocket, openSockets);
-  	  Tailer tail = openFileTail(inputPath, openSockets);
+  	  Tailer tail = openFileTail(input, openSockets);
     	 
     	 return new PublishedStream(serverSocket, connectionListener, tail, openSockets);
 		}
@@ -65,8 +65,8 @@ public class PublishedStream{
     	return t;
 		}
 		
-		private static final Tailer openFileTail(final String inputPath, final List<Socket> openSockets){
-			return Tailer.create(new File(inputPath), new TailerListenerAdapter(){
+		private static final Tailer openFileTail(final File inputFile, final List<Socket> openSockets){
+			return Tailer.create(inputFile, new TailerListenerAdapter(){
 
 				@Override
 				public void fileNotFound() {

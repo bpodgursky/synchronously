@@ -13,8 +13,11 @@ public class DataServer {
   	Scanner scan = new Scanner(new File(PUBLISH_FILE));
   	
   	while(scan.hasNext()){
-  		String file = scan.next();
+  		String filePath = scan.next();
   		Integer port = scan.nextInt();
+  		File file = new File(filePath);
+  		
+  		if(!file.exists()) throw new FileNotFoundException(filePath);
   		
   		streams.add(PublishedStream.publish(file, port));
   		

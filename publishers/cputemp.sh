@@ -1,3 +1,7 @@
+if [ -e cputemp.out ]; then
+   rm cputemp.out
+fi
+
 while true
 do
   sleep 1

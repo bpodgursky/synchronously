@@ -1,3 +1,7 @@
+if [ -e $1.out ]; then
+   rm $1.out
+fi
+
 while true
 do
   sleep 5

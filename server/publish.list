@@ -1,5 +1,5 @@
 /var/lib/mysql/output.out 4444
-publishers/heartbeat.out 4443
-publishers/random.out 4442
-publishers/cputemp.out 4441
-publishers/BNA.out 4440
+../publishers/heartbeat.out 4443
+../publishers/random.out 4442
+../publishers/cputemp.out 4441
+../publishers/BNA.out 4440
