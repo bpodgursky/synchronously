@@ -19,7 +19,7 @@ drop procedure if exists udfwrapper_sp;
 DELIMITER $$
 CREATE PROCEDURE udfwrapper_sp(IN data text)
 BEGIN
-select sys_eval(concat('echo ', data, ' >> alog.txt')) into @output;
+select sys_eval(concat('echo ', data, ' >> log.txt')) into @output;
 END$$
 
 delimiter |
