@@ -16,11 +16,11 @@ CREATE FUNCTION sys_eval RETURNS string SONAME 'lib_mysqludf_sys.so';
 
 drop procedure if exists udfwrapper_sp;
 
-DELIMITER $$
+DELIMITER |
 CREATE PROCEDURE udfwrapper_sp(IN data text)
 BEGIN
 select sys_eval(concat('echo ', data, ' >> output.out')) into @output;
-END$$
+END|
 
 delimiter |
 CREATE TRIGGER push_update AFTER INSERT ON daily_readings
